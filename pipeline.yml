@@ -1,0 +1,15 @@
+resources:
+- name: master
+  type: git
+  source:
+    uri: https://github.com/eventsourcing/es4j
+    branch: master-test
+
+jobs:
+- name: apidocs-master
+  plan:
+  - get: src
+    resource: master
+    trigger: true
+  - task: build-apidocs
+    file: src/ci/build-apidocs.yml
